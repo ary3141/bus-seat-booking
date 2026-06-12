@@ -1,56 +1,304 @@
-# Welcome to your Expo app 👋
+# Bus Seat Booking App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native mobile application for booking bus seats.
+This project was built as a technical test for the **Intern React Native Developer** position.
 
-## Get started
+The app allows users to choose a bus class, select a departure date, pick available seats, calculate the total price, confirm bookings, and view sales history.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## APK Download
 
-2. Start the app
+APK Link: `PUT_YOUR_GOOGLE_DRIVE_APK_LINK_HERE`
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## Demo Video
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+YouTube Demo: `PUT_YOUR_YOUTUBE_DEMO_LINK_HERE`
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## GitHub Repository
 
-When you're ready, run:
+Repository Link: `https://github.com/ary3141/bus-seat-booking`
 
-```bash
-npm run reset-project
+---
+
+## Features
+
+### Core Features
+
+* Choose between **Regular Class** and **Express Class**
+* Dynamic seat layout based on selected bus class
+* Select and unselect seats
+* Clear selected seat highlight
+* Maximum selection of **5 seats per booking**
+* Live total price calculation
+* Different pricing for window seats and regular seats
+* Confirm booking button
+* Confirmed seats become unavailable
+* Local data storage using AsyncStorage
+* Seat availability reset when all seats for a specific bus type and date are fully booked
+
+---
+
+### Bonus Features
+
+* Departure date selection
+* User must select a date before selecting seats
+* Booked seats are tied to the selected departure date
+* Seat reset only applies to the selected bus type and selected date
+* Sales history screen
+* Date filter for sales history
+* Total revenue calculation
+* Booking list showing:
+
+  * Bus class
+  * Departure date
+  * Booked seats
+  * Total booking price
+
+---
+
+## Bus Class Rules
+
+### Regular Class
+
+* Total seats: 20
+* Layout: 10 seats left + 10 seats right
+* Seat shape: square
+* Window seat price: Rp 150.000
+* Regular seat price: Rp 100.000
+
+---
+
+### Express Class
+
+* Total seats: 12
+* Layout: 6 seats left + 6 seats right
+* Seat shape: rectangle
+* Window seat price: Rp 200.000
+* Regular seat price: Rp 150.000
+
+---
+
+## Tech Stack
+
+* React Native
+* Expo
+* Expo Router
+* TypeScript
+* AsyncStorage
+
+---
+
+## Project Structure
+
+```txt
+bus-seat-booking/
+├── app/
+│   ├── _layout.tsx
+│   ├── index.tsx
+│   └── history.tsx
+│
+├── src/
+│   ├── components/
+│   │   ├── common/
+│   │   └── booking/
+│   │
+│   ├── constants/
+│   ├── features/
+│   │   ├── booking/
+│   │   └── history/
+│   │
+│   ├── models/
+│   ├── repositories/
+│   ├── services/
+│   ├── types/
+│   └── utils/
+│
+├── package.json
+└── README.md
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-### Other setup steps
+## Architecture
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+This project uses a structured architecture to separate UI, logic, and storage.
 
-## Learn more
+```txt
+Expo Router
+↓
+Screens / Features
+↓
+ViewModel Hooks
+↓
+Services
+↓
+Repository
+↓
+AsyncStorage
+↓
+Models + Constants + Utils
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Main Folders
 
-## Join the community
+### `app/`
 
-Join our community of developers creating universal apps.
+Contains Expo Router pages.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+* `index.tsx` - Booking screen route
+* `history.tsx` - Sales history route
+* `_layout.tsx` - App navigation layout
+
+---
+
+### `src/components/`
+
+Contains reusable UI components.
+
+* Common components:
+
+  * AppButton
+  * AppCard
+  * AppHeader
+  * AppScreen
+  * DatePickerModal
+  * EmptyState
+  * StatusLegend
+
+* Booking components:
+
+  * BusClassSelector
+  * SeatGrid
+  * SeatItem
+  * BookingSummaryCard
+
+---
+
+### `src/features/`
+
+Contains screen-level features and state logic.
+
+* `booking/`
+
+  * BookingScreen
+  * useBookingViewModel
+
+* `history/`
+
+  * HistoryScreen
+  * useHistoryViewModel
+
+---
+
+### `src/models/`
+
+Contains domain models.
+
+* Booking
+* Bus
+* Seat
+
+---
+
+### `src/services/`
+
+Contains business logic.
+
+* BookingService
+* SeatService
+* StorageService
+
+---
+
+### `src/repositories/`
+
+Contains storage access logic.
+
+* BookingRepository
+
+---
+
+## How to Run the Project
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/ary3141/bus-seat-booking.git
+cd bus-seat-booking
+```
+
+---
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3. Start the project
+
+```bash
+npx expo start
+```
+
+---
+
+### 4. Run on simulator or device
+
+Press one of the Expo commands:
+
+```txt
+i - open iOS simulator
+a - open Android emulator
+```
+
+Or scan the QR code using Expo Go if your device supports the project SDK version.
+
+---
+
+## How to Test the App
+
+### Booking Flow
+
+1. Open the app
+2. Select Regular or Express bus class
+3. Select a departure date
+4. Select available seats
+5. Check the total price
+6. Tap Confirm Booking
+7. Confirmed seats should become unavailable
+
+---
+
+### Sales History Flow
+
+1. Tap the History button
+2. View booking list
+3. Check total revenue
+4. Filter bookings by date
+5. Tap Book to return to the booking screen
+
+---
+
+## Notes
+
+* This app uses local storage only.
+* No backend is required.
+* Booked seats are stored locally using AsyncStorage.
+* Seat availability is calculated based on bus type and departure date.
+* When all seats for a bus type and date are booked, the seat availability for that bus type and date is reset.
+
+---
+
+## Author
+
+M Dwiva Arya Erlangga
