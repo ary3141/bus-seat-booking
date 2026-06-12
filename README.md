@@ -9,13 +9,15 @@ The app allows users to choose a bus class, select a departure date, pick availa
 
 ## APK Download
 
-APK Link: `PUT_YOUR_GOOGLE_DRIVE_APK_LINK_HERE`
+The APK file can be downloaded from the Google Drive folder below:
+
+https://drive.google.com/drive/folders/1oyBZ-qP9ZN507B78yh1XyIOBi5eWiidK?usp=sharing
 
 ---
 
 ## Demo Video
 
-YouTube Demo: `PUT_YOUR_YOUTUBE_DEMO_LINK_HERE`
+YouTube Demo: [`YOUTUBE_DEMO_LINK`](https://youtube.com/shorts/CXh3Eql-5zU)
 
 ---
 
