@@ -1,42 +1,37 @@
+import { BUS_CONFIG } from "@/constants/bus";
+import { Seat } from "@/models/Seat";
 import { BusType } from "@/types";
 
-export const MAX_SELECTED_SEATS = 5;
+export class Bus {
+  readonly type: BusType;
 
-export const BUS_CONFIG: Record<
-  BusType,
-  {
-    label: string;
-    shortLabel: string;
-    totalSeats: number;
-    rows: string[];
-    columns: number[];
-    windowColumns: number[];
-    normalPrice: number;
-    windowPrice: number;
-    layoutDescription: string;
+  constructor(type: BusType) {
+    this.type = type;
   }
-> = {
-  regular: {
-    label: "Regular Class",
-    shortLabel: "Regular",
-    totalSeats: 20,
-    rows: ["A", "B", "C", "D", "E"],
-    columns: [1, 2, 3, 4],
-    windowColumns: [1, 4],
-    normalPrice: 100000,
-    windowPrice: 150000,
-    layoutDescription: "20 seats • 10 left + 10 right",
-  },
 
-  express: {
-    label: "Express Class",
-    shortLabel: "Express",
-    totalSeats: 12,
-    rows: ["A", "B", "C"],
-    columns: [1, 2, 3, 4],
-    windowColumns: [1, 4],
-    normalPrice: 150000,
-    windowPrice: 200000,
-    layoutDescription: "12 seats • 6 left + 6 right",
-  },
-};
+  get config() {
+    return BUS_CONFIG[this.type];
+  }
+
+  get label() {
+    return this.config.label;
+  }
+
+  get shortLabel() {
+    return this.config.shortLabel;
+  }
+
+  get totalSeats() {
+    return this.config.totalSeats;
+  }
+
+  get layoutDescription() {
+    return this.config.layoutDescription;
+  }
+
+  get seats() {
+    return this.config.rows.flatMap((row) =>
+      this.config.columns.map((column) => new Seat(row, column, this.type))
+    );
+  }
+}
